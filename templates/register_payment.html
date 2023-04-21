@@ -1,0 +1,64 @@
+{% extends "main_window.html" %}
+
+{% block content %}
+<h1>Register Payment</h1>
+<form method="post">
+  <label for="payer">Payer:</label>
+  <input type="text" id="payer" name="payer" required>
+  <br>
+  <label for="payee">Payee:</label>
+  <input type="text" id="payee" name="payee" required>
+  <br>
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" name="amount" required>
+  <br>
+  <label for="currency">Currency:</label>
+  <select id="currency" name="currency" required>
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="CNY">CNY</option>
+    <!-- Add more currencies as needed -->
+  </select>
+  <br>
+  <label for="payment_date">Payment Date:</label>
+  <input type="date" id="payment_date" name="payment_date" required>
+  <br>
+  <label for="payment_method">Payment Method:</label>
+  <select id="payment_method" name="payment_method" required>
+    <option value="cash">Cash</option>
+    <option value="bank_transfer">Bank Transfer</option>
+    <option value="credit_card">Credit Card</option>
+  </select>
+  <br>
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" rows="4" cols="50" required></textarea>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<!-- Display the registered payments data -->
+<table>
+  <tr>
+    <th>Payer</th>
+    <th>Payee</th>
+    <th>Amount</th>
+    <th>Currency</th>
+    <th>Payment Date</th>
+    <th>Payment Method</th>
+    <th>Description</th>
+  </tr>
+  {% for payment in payments %}
+    <tr>
+      <td>{{ payment.payer }}</td>
+      <td>{{ payment.payee }}</td>
+      <td>{{ payment.amount }}</td>
+      <td>{{ payment.currency }}</td>
+      <td>{{ payment.payment_date.strftime('%Y-%m-%d') }}</td>
+      <td>{{ payment.payment_method }}</td>
+      <td>{{ payment.description }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<a href="{{ url_for('main_window.main') }}">Return to Main Window</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "main_window.html" %}
+
+{% block content %}
+<h1>Payment Summary</h1>
+<form method="post">
+  <label for="start_date">Start Date:</label>
+  <input type="date" id="start_date" name="start_date" required>
+  <br>
+  <label for="end_date">End Date:</label>
+  <input type="date" id="end_date" name="end_date" required>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<!-- Display the payment summary data -->
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Total Amount</th>
+  </tr>
+  {% for category, total_amount in payment_summary %}
+    <tr>
+      <td>{{ category }}</td>
+      <td>{{ total_amount }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<a href="{{ url_for('main_window.main') }}">Return to Main Window</a>
+{% endblock %}

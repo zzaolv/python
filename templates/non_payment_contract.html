@@ -1,0 +1,35 @@
+{% extends "main_window.html" %}
+
+{% block content %}
+<h1>Non-Payment Contract</h1>
+<form method="post">
+  <label for="contract_name">Contract Name:</label>
+  <input type="text" id="contract_name" name="contract_name" required>
+  <br>
+  <label for="cost_item_id">Cost Item ID:</label>
+  <input type="number" id="cost_item_id" name="cost_item_id" required>
+  <br>
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" name="amount" required>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<!-- Display the non-payment contracts data -->
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Cost Item ID</th>
+    <th>Amount</th>
+  </tr>
+  {% for contract in non_payment_contracts %}
+    <tr>
+      <td>{{ contract.name }}</td>
+      <td>{{ contract.cost_item_id }}</td>
+      <td>{{ contract.amount }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<a href="{{ url_for('main_window.main') }}">Return to Main Window</a>
+{% endblock %}

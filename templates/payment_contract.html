@@ -1,0 +1,44 @@
+{% extends "main_window.html" %}
+
+{% block content %}
+<h1>Payment Contract</h1>
+<form method="post">
+  <label for="name">Contract Name:</label>
+  <input type="text" id="name" name="name" required>
+  <br>
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" name="amount" required>
+  <br>
+  <label for="payment_time">Payment Time:</label>
+  <input type="date" id="payment_time" name="payment_time" required>
+  <br>
+  <label for="payment_method">Payment Method:</label>
+  <select id="payment_method" name="payment_method" required>
+    <option value="cash">Cash</option>
+    <option value="bank_transfer">Bank Transfer</option>
+    <option value="credit_card">Credit Card</option>
+  </select>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<!-- Display the payment contracts data -->
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Payment Time</th>
+    <th>Payment Method</th>
+  </tr>
+  {% for contract in payment_contracts %}
+    <tr>
+      <td>{{ contract.name }}</td>
+      <td>{{ contract.amount }}</td>
+      <td>{{ contract.payment_time.strftime('%Y-%m-%d') }}</td>
+      <td>{{ contract.payment_method }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<a href="{{ url_for('main_window.main') }}">Return to Main Window</a>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "main_window.html" %}
+
+{% block content %}
+<h1>Query Payments</h1>
+<form action="{{ url_for('payments.query_payments') }}" method="POST">
+  <label for="start_date">Start Date:</label>
+  <input type="date" id="start_date" name="start_date" required>
+  <br>
+  <label for="end_date">End Date:</label>
+  <input type="date" id="end_date" name="end_date" required>
+  <br>
+  <label for="currency">Currency:</label>
+  <select id="currency" name="currency">
+    <option value="">All</option>
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="CNY">CNY</option>
+    <!-- Add more currencies as needed -->
+  </select>
+  <br>
+  <input type="submit" value="Submit">
+
+</form>
+
+<!-- Display the queried payments data -->
+<!-- Display the queried payments data -->
+<table>
+    <tr>
+      <th>Payer</th>
+      <th>Payee</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Payment Date</th>
+      <th>Payment Method</th>
+      <th>Description</th>
+    </tr>
+    {% for payment in queried_payments %}
+      <tr>
+        <td>{{ payment.payer }}</td>
+        <td>{{ payment.payee }}</td>
+        <td>{{ payment.amount }}</td>
+        <td>{{ payment.currency }}</td>
+        <td>{{ payment.payment_time.strftime('%Y-%m-%d') }}</td>
+        <td>{{ payment.payment_method }}</td>
+        <td>{{ payment.description }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "main_window.html" %}
+
+{% block content %}
+<h1>Cost Items</h1>
+<form method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+  <br>
+  <label for="code">Code:</label>
+  <input type="text" id="code" name="code" required>
+  <br>
+  <label for="description">Description:</label>
+  <input type="text" id="description" name="description" required>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+<!-- Display the cost items data -->
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Description</th>
+  </tr>
+  {% for cost_item in cost_items %}
+    <tr>
+      <td>{{ cost_item.name }}</td>
+      <td>{{ cost_item.code }}</td>
+      <td>{{ cost_item.description }}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<a href="{{ url_for('main_window.main') }}">Return to Main Window</a>
+{% endblock %}

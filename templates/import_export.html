@@ -1,0 +1,13 @@
+{% extends 'main_window.html' %}
+
+{% block content %}
+  <h1>Import and Export Data</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label for="excel_file">Excel File:</label>
+    <input type="file" name="excel_file" required><br>
+    <label for="chart_type">Chart Type:</label>
+    <select name="chart_type" id="chart_type">
+        <option value="bar">Bar</option>
+        <option value="pie">Pie</option>
+        <option value="line">Line</option>
+    </select>

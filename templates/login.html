@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+<div class="login-container">
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+    </div>
+    <form action="{{ url_for('login.login') }}" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+    </form>
+</div>
+{% if is_admin %}
+<!-- Add User Modal -->
+<div id="addUserModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Add User</h2>
+    <form id="addUserForm">
+      <label for="new_username">Username:</label>
+      <input type="text" id="new_username" name="new_username" required>
+      <label for="new_password">Password:</label>
+      <input type="password" id="new_password" name="new_password" required>
+      <button type="submit">Add User</button>
+    </form>
+  </div>
+</div>
+<button id="addUserBtn">Add User</button>
+{% endif %}
+
+</body>
+</html>

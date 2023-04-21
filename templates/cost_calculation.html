@@ -1,0 +1,29 @@
+{% extends "main_window.html" %}
+
+{% block content %}
+<h1>Cost Calculation</h1>
+<form method="POST"> <!-- 更改为 POST -->
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required>
+    <br>
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date" required>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+  
+<!-- Display the cost calculation data -->
+<table>
+  <tr>
+    <th>Cost Item</th>
+    <th>Calculated Amount</th>
+  </tr>
+  {% for cost_item, calculated_amount in cost_calculations %}
+    <tr>
+      <td>{{ cost_item }}</td>
+      <td>{{ calculated_amount }}</td>
+    </tr>
+  {% endfor %}
+</table>
+<a href="{{ url_for('main_window.main') }}">Return to Main Window</a>
+{% endblock %}
